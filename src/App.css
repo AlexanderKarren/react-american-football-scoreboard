@@ -3,7 +3,7 @@
   --red: #ff2d2b;
 }
 
-.scoreboard {
+.scoreboard, .setNames {
   width: 58%;
   margin: 2rem auto;
   background-color: #0b5402;
@@ -12,6 +12,27 @@
   margin-top: 10rem;
   padding: 5rem;
   border: 4px solid #aaaaaa;
+}
+
+.setNames form {
+  display:flex;
+  align-items:center;
+  flex-direction:column;
+}
+
+.setNames form input {
+  width:50%;
+}
+
+.setNames form input[type=text] {
+  margin:10px 0;
+  padding:10px;
+  outline:none;
+  border-radius:2px;
+  border:0;
+  font-family:inherit;
+  font-size:100%;
+  text-align:center;
 }
 
 .topRow {
@@ -31,6 +52,10 @@
   border: 3px solid white;
   border-radius: 0.5rem;
   width: 15rem;
+}
+
+.home, .away {
+  width:200px;
 }
 
 .home {
