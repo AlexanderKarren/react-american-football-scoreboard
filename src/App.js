@@ -6,7 +6,6 @@ import Buttons from "./Buttons";
 
 function App() {
   //TODO: STEP 2 - Establish your applictaion's state with some useState hooks.  You'll need one for the home score and another for the away score.
-  const [homeName, setHome] = useState("Lions");
   const [lionScore, setLionScore] = useState(0);
   const [tigerScore, setTigerScore] = useState(0);
   const [currentQuarter, setQuarter] = useState(0);
@@ -15,8 +14,11 @@ function App() {
   const [minuteOnes, setMinuteOnes] = useState(0);
   const [minuteTens, setMinuteTens] = useState(0);
 
+  const [homeName, setHome] = useState("Lions");
+  const [awayName, setAway] = useState("Tigers");
+
   useEffect(() => {
-    const timer = setTimeout(() => {
+    setTimeout(() => {
       if (secondOnes === 9) {
         setSecondOnes(0);
         setSecondTens(secondTens + 1);
@@ -55,6 +57,7 @@ function App() {
   }
 
   const advanceQuarter = () => {
+
     if (currentQuarter < 4) {
       setQuarter(currentQuarter + 1);
     }
@@ -63,12 +66,29 @@ function App() {
     }
   }
 
+  const handleChange = (event, team) => {
+    if (event.target.id === "home") {
+      setHome(event.target.value);
+    }
+    else {
+      setAway(event.target.value);
+    }
+  }
+
   return (
     <div className="container">
+      <section className="setNames">
+        <form>
+          <label htmlFor="home">Home Team</label>
+          <input type="text" id="home" name="home" placeholder="Lions" onChange={handleChange}></input>
+          <label htmlFor="away">Away Team</label>
+          <input type="text" id="away" name="away" placeholder="Tigers" onChange={handleChange}></input>
+        </form>
+      </section>
       <section className="scoreboard">
         <div className="topRow">
           <div className="home">
-            <h2 className="home__name">Lions</h2>
+            <h2 className="home__name">{homeName}</h2>
 
             {/* TODO STEP 3 - We need to change the hardcoded values in these divs to accept dynamic values from our state. */}
 
@@ -76,13 +96,13 @@ function App() {
           </div>
           <div className="timer"><div>{minuteTens}</div><div>{minuteOnes}</div><div>:</div><div>{secondTens}</div><div>{secondOnes}</div></div>
           <div className="away">
-            <h2 className="away__name">Tigers</h2>
+            <h2 className="away__name">{awayName}</h2>
             <div className="away__score">{tigerScore}</div>
           </div>
         </div>
         <BottomRow currentQuarter={currentQuarter}/>
       </section>
-      <Buttons touchdownHome={()=>touchdown(true)} touchdownAway={()=>touchdown(false)} fieldGoalHome={()=>fieldGoal(true)} fieldGoalAway={()=>fieldGoal(false)} advanceQuarter={()=>advanceQuarter()}/>
+      <Buttons touchdown={touchdown} fieldGoal={fieldGoal} advanceQuarter={advanceQuarter}/>
     </div>
   );
 }
