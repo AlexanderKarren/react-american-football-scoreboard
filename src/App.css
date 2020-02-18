@@ -71,6 +71,11 @@
   background-color: var(--black);
   border: 2px solid white;
   border-radius: 6px;
+  display:flex;
+}
+
+.timer div {
+  width:50px;
 }
 
 .bottomRow {
