@@ -8,6 +8,24 @@ function App() {
   const [lionScore, setLionScore] = useState(32);
   const [tigerScore, setTigerScore] = useState(69);
 
+  const touchdown = (homeTeam) => {
+    if (homeTeam === true) {
+      setLionScore(lionScore + 6);
+    }
+    else {
+      setTigerScore(tigerScore + 6);
+    }
+  }
+
+  const fieldGoal = (homeTeam) => {
+    if (homeTeam === true) {
+      setLionScore(lionScore + 3);
+    }
+    else {
+      setTigerScore(tigerScore + 3);
+    }
+  }
+
   return (
     <div className="container">
       <section className="scoreboard">
@@ -30,12 +48,12 @@ function App() {
       <section className="buttons">
         <div className="homeButtons">
           {/* TODO STEP 4 - Now we need to attach our state setter functions to click listeners. */}
-          <button className="homeButtons__touchdown">Home Touchdown</button>
-          <button className="homeButtons__fieldGoal">Home Field Goal</button>
+          <button className="homeButtons__touchdown" onClick={() => touchdown(true)}>Home Touchdown</button>
+          <button className="homeButtons__fieldGoal" onClick={() => fieldGoal(true)}>Home Field Goal</button>
         </div>
         <div className="awayButtons">
-          <button className="awayButtons__touchdown">Away Touchdown</button>
-          <button className="awayButtons__fieldGoal">Away Field Goal</button>
+          <button className="awayButtons__touchdown" onClick={() => touchdown(false)}>Away Touchdown</button>
+          <button className="awayButtons__fieldGoal" onClick={() => fieldGoal(false)}>Away Field Goal</button>
         </div>
       </section>
     </div>
